@@ -40,7 +40,7 @@ The policy gradient algorithm works by updating policy parameters via stochastic
 
     \theta_{k+1} = \theta_k + \alpha \nabla_{\theta} J(\pi_{\theta_k})
 
-Policy gradient implementations typically compute advantage function estimates based on the infinite-horizon discounted return, despite otherwise use the finite-horizon undiscounted policy gradient formula. 
+Policy gradient implementations typically compute advantage function estimates based on the infinite-horizon discounted return, despite otherwise using the finite-horizon undiscounted policy gradient formula. 
 
 Exploration vs. Exploitation
 ----------------------------
@@ -85,10 +85,35 @@ Pseudocode
 Documentation
 =============
 
-.. autofunction:: spinup.vpg
+.. admonition:: You Should Know
 
-Saved Model Contents
---------------------
+    In what follows, we give documentation for the PyTorch and Tensorflow implementations of VPG in Spinning Up. They have nearly identical function calls and docstrings, except for details relating to model construction. However, we include both full docstrings for completeness.
+
+
+Documentation: PyTorch Version
+------------------------------
+
+.. autofunction:: spinup.vpg_pytorch
+
+Saved Model Contents: PyTorch Version
+-------------------------------------
+
+The PyTorch saved model can be loaded with ``ac = torch.load('path/to/model.pt')``, yielding an actor-critic object (``ac``) that has the properties described in the docstring for ``vpg_pytorch``. 
+
+You can get actions from this model with
+
+.. code-block:: python
+
+    actions = ac.act(torch.as_tensor(obs, dtype=torch.float32))
+
+
+Documentation: Tensorflow Version
+---------------------------------
+
+.. autofunction:: spinup.vpg_tf1
+
+Saved Model Contents: Tensorflow Version
+----------------------------------------
 
 The computation graph saved by the logger includes:
 
